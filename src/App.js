@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
+import Typeform from "./components/Typeform";
 
 function App() {
 	return (
-		<div className="App">
-			<h1>Test</h1>
-		</div>
+		<>
+			<Typeform src="<insert typeform url here>" />
+		</>
 	);
 }
 
