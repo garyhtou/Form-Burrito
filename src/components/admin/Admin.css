@@ -1,0 +1,31 @@
+@import "~antd/dist/antd.css";
+
+.logo {
+	width: 100%;
+	padding: 10px 10px;
+	vertical-align: middle;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+.logo h1 {
+	font-size: 2em;
+	color: white;
+	margin: 0;
+	padding-left: 16px;
+	padding-right: 8px;
+	word-break: break-all;
+	line-height: 1.2;
+	cursor: pointer;
+}
+
+.admin-pageTitle {
+	font-size: 3em;
+}
+
+.gh-link {
+	color: inherit;
+}
+
+.credit-sep {
+	padding: 0 10px;
+}

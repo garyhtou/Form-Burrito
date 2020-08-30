@@ -1,12 +1,13 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import "./Typeform.css";
-import Error from "./Error";
-import Loading from "./Loading";
+import Error from "./../Error";
+import Loading from "./../Loading";
 
-class Typeform extends React.Component {
+class GoogleForms extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { loading: true, error: false };
+		this.state = { loading: true, error: false, formTitle: "" };
 		if (typeof props.src === "undefined" || props.src === "") {
 			this.state = { loading: false, error: true };
 		}
@@ -14,10 +15,10 @@ class Typeform extends React.Component {
 
 	componentDidMount() {
 		var corsAnywhere = "https://cors-anywhere.herokuapp.com/";
-		var typeformURL = this.props.src;
+		var formURL = this.props.src;
 
 		if (!this.state.error) {
-			fetch(corsAnywhere + typeformURL)
+			fetch(corsAnywhere + formURL)
 				.then(function (response) {
 					return response.text();
 				})
@@ -27,11 +28,14 @@ class Typeform extends React.Component {
 							responseText,
 							"text/html"
 						);
-						if (parsedResponse.title.includes("Incorrect URL")) {
+						if (parsedResponse.title.includes("Page Not Found")) {
 							this.setState({ loading: false, error: true });
 						} else {
-							this.setState({ loading: false, error: false });
-							//TODO set website title
+							this.setState({
+								loading: false,
+								error: false,
+								formTitle: parsedResponse.title,
+							});
 						}
 					}.bind(this)
 				)
@@ -55,18 +59,25 @@ class Typeform extends React.Component {
 							<Error />
 						) : (
 							<>
+								{this.state.formTitle !== "" ? (
+									<Helmet>
+										<title>{this.state.formTitle}</title>
+									</Helmet>
+								) : (
+									<></>
+								)}
+
 								<iframe
-									id="typeform-full"
+									src={this.props.src}
 									width="100%"
 									height="100%"
-									frameBorder="0"
-									allow="camera; microphone; autoplay; encrypted-media;"
-									src={this.props.src}
-								></iframe>
-								<script
-									type="text/javascript"
-									src="https://embed.typeform.com/embed.js"
-								></script>
+									frameborder="0"
+									marginheight="0"
+									marginwidth="0"
+									title={this.state.formTitle}
+								>
+									Loading…
+								</iframe>
 							</>
 						)}
 					</>
@@ -76,4 +87,4 @@ class Typeform extends React.Component {
 	}
 }
 
-export default Typeform;
+export default GoogleForms;
