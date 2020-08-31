@@ -9,10 +9,10 @@ var firebaseConfig = {
 	measurementId: "G-L2GRG23S22",
 };
 
-var exportObj = {
+var config = {
 	firebaseConfig: firebaseConfig,
-	homeRedirect: "https://synhacks.org",
-	entityName: "synHacks", //The name of the business, organization, or your own name!
+	homeRedirect: "https://github.com/garytou2/Form-Burrito",
+	entityName: "Form Burrito", //The name of the business, organization, or your own name!
 };
 
-export default exportObj;
+export default config;

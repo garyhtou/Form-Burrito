@@ -1,11 +1,16 @@
 {
-	"short_name": "Forms",
-	"name": "Forms",
+	"short_name": "Form Burrito",
+	"name": "Form Burrito",
 	"icons": [
 		{
-			"src": "favicon.png",
+			"src": "icon192.png",
 			"type": "image/png",
-			"sizes": "480x480"
+			"sizes": "192x192"
+		},
+		{
+			"src": "icon512.png",
+			"type": "image/png",
+			"sizes": "512x512"
 		}
 	],
 	"start_url": ".",

@@ -3,10 +3,11 @@ import { Helmet } from "react-helmet";
 import "./App.css";
 import Typeform from "./components/forms/Typeform";
 import Error from "./components/Error";
-import Firebase from "./Firebase";
+import firebase from "./firebase";
 import config from "./config";
 import GoogleForms from "./components/forms/GoogleForms";
 import Admin from "./components/admin/Admin";
+import OtherForm from "./components/forms/OtherForm";
 
 class App extends React.Component {
 	constructor(props) {
@@ -24,7 +25,8 @@ class App extends React.Component {
 		} else if (path === "") {
 			this.setState({ loading: false, home: true });
 		} else {
-			Firebase.database()
+			firebase
+				.database()
 				.ref("urls")
 				.once("value")
 				.then(
@@ -79,7 +81,7 @@ class App extends React.Component {
 										) : this.state.type === "googleforms" ? (
 											<GoogleForms src={this.state.url} />
 										) : (
-											<Error />
+											<OtherForm src={this.state.url} />
 										)}
 									</>
 								)}

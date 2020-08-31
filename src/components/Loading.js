@@ -5,7 +5,7 @@ function Loading() {
 	return (
 		<>
 			<div className="full loading">
-				{/* <h1>Loading...</h1> */}
+				{/* It's probably best to not display anything as the loading time is short */}
 			</div>
 		</>
 	);

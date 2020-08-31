@@ -1,13 +1,13 @@
 @import "~antd/dist/antd.css";
 
-.logo {
+.entityName {
 	width: 100%;
-	padding: 10px 10px;
+	padding: 10px 5px;
 	vertical-align: middle;
 	margin-top: 5px;
 	margin-bottom: 10px;
 }
-.logo h1 {
+.entityName h1 {
 	font-size: 2em;
 	color: white;
 	margin: 0;
@@ -28,4 +28,28 @@
 
 .credit-sep {
 	padding: 0 10px;
+}
+
+.admin-login-container {
+	text-align: center;
+	vertical-align: middle;
+	background-color: white;
+	padding: 50px;
+	border-radius: 25px;
+	width: fit-content;
+
+	min-width: 350px;
+	min-height: 230px;
+}
+
+.admin-login-logo {
+	width: 25em;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+	background-color: #f0f0f0;
+	padding: 2px 4px;
+	border-radius: 2px;
 }
