@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import "./Typeform.css";
+import "./GoogleForms.css";
 import Error from "./../Error";
 import Loading from "./../Loading";
 
@@ -44,7 +44,6 @@ class GoogleForms extends React.Component {
 				)
 				.catch(
 					function (err) {
-						console.error(err);
 						this.setState({ loading: false, error: true });
 					}.bind(this)
 				);

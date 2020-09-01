@@ -8,6 +8,8 @@ import config from "./config";
 import GoogleForms from "./components/forms/GoogleForms";
 import Admin from "./components/admin/Admin";
 import OtherForm from "./components/forms/OtherForm";
+import Airtable from "./components/forms/Airtable";
+import SurveyMonkey from "./components/forms/SurveyMonkey";
 
 class App extends React.Component {
 	constructor(props) {
@@ -80,6 +82,10 @@ class App extends React.Component {
 											<Typeform src={this.state.url} />
 										) : this.state.type === "googleforms" ? (
 											<GoogleForms src={this.state.url} />
+										) : this.state.type === "airtable" ? (
+											<Airtable src={this.state.url} />
+										) : this.state.type === "surveymonkey" ? (
+											<SurveyMonkey src={this.state.url} />
 										) : (
 											<OtherForm src={this.state.url} />
 										)}

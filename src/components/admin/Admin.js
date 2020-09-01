@@ -88,7 +88,11 @@ class Admin extends React.Component {
 			.then(() => {
 				notification.open({
 					icon: (
-						<Icon component={() => <img src="/icon512.png" width="30px" />} />
+						<Icon
+							component={() => (
+								<img src="/icon512.png" width="30px" alt="Form Burrito Logo" />
+							)}
+						/>
 					),
 					message: "Goodbye, " + name,
 					description: this.authMessages.logout[
@@ -121,6 +125,37 @@ class Admin extends React.Component {
 						email: authResult.user.email,
 						name: authResult.user.displayName,
 						photoURL: photoURL,
+					});
+
+				firebase
+					.database()
+					.ref("admins/")
+					.once("value", function (snapshot) {
+						if (!snapshot.exists()) {
+							console.log("FIRST USER! WELCOME!");
+							firebase
+								.database()
+								.ref("admins/" + authResult.user.uid)
+								.set(true)
+								.then(() => {
+									notification.open({
+										type: "info",
+										message: "Welcome to Form Burrito!",
+										description: (
+											<p>
+												If you have any questions, please refer to the{" "}
+												<a href="https://github.com/garytou2/Form-Burrito">
+													Read Me
+												</a>{" "}
+												on GitHub <GithubOutlined />
+											</p>
+										),
+									});
+								});
+							firebase.database().ref("settings/manyToOne").set(false);
+						} else {
+							console.log("Not first user");
+						}
 					});
 
 				return false;
@@ -182,7 +217,15 @@ class Admin extends React.Component {
 												{!this.state.collapsed ? (
 													<div className="entityName">
 														<a href={config.homeRedirect}>
-															<h1>{config.entityName}</h1>
+															<h1
+																id={
+																	config.entityName === "Form Burrito"
+																		? "entityNameFormBurrito"
+																		: ""
+																}
+															>
+																{config.entityName}
+															</h1>
 														</a>
 													</div>
 												) : (
@@ -280,6 +323,7 @@ class Admin extends React.Component {
 															src="/logo.png"
 															className="admin-login-logo"
 															draggable={false}
+															alt="Form Burrito Logo"
 														/>
 													</a>
 													<h1 style={{ marginTop: "30px" }}>
@@ -287,7 +331,9 @@ class Admin extends React.Component {
 													</h1>
 													<p>
 														You aren't an Admin yet.{" "}
-														<a onClick={this.signout}>Sign out</a>
+														<a onClick={this.signout} href="#">
+															Sign out
+														</a>
 													</p>
 												</div>
 											</Content>
@@ -334,6 +380,7 @@ class Admin extends React.Component {
 													src="/logo.png"
 													className="admin-login-logo"
 													draggable={false}
+													alt="Form Burrito Logo"
 												/>
 											</a>
 											<h1 style={{ marginTop: "30px" }}>Login</h1>

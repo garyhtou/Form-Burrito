@@ -1,12 +1,35 @@
 import React from "react";
-import "./Error.css";
+import { Spin, Layout } from "antd";
+
+const { Content } = Layout;
 
 function Loading() {
 	return (
 		<>
-			<div className="full loading">
-				{/* It's probably best to not display anything as the loading time is short */}
-			</div>
+			{/* IT IS PROBABLY BEST TO SHOW NOTHING AS THE LOADING TIME IS SHORT */}
+
+			{/* <Layout style={{ minHeight: "100vh" }}>
+				<Content
+					style={{
+						padding: "50px",
+						textAlign: "center",
+						verticalAlign: "middle",
+						position: "relative",
+					}}
+				>
+					<div
+						style={{
+							position: "absolute",
+							top: "50%",
+							left: "50%",
+							transform: "translate(-50%, -50%)",
+							textAlign: "center",
+						}}
+					>
+						<Spin size="large" />
+					</div>
+				</Content>
+			</Layout> */}
 		</>
 	);
 }

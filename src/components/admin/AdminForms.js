@@ -327,132 +327,7 @@ class AdminForms extends React.Component {
 				title: "Custom URL",
 				dataIndex: "short",
 				key: "short",
-				// render: (url, row) => {
-				// 	if (row.edit) {
-				// 		var editElements = (
-				// 			<div className="editRow">
-				// 				<Form
-				// 					hideRequiredMark
-				// 					onFinish={(values) => {
-				// 						var updates = {};
-				// 						updates.full = values.full.trim();
-				// 						updates.short = values.short.trim();
-				// 						updates.type = values.type.trim();
 
-				// 						firebase
-				// 							.database()
-				// 							.ref("urls/" + row.pushKey)
-				// 							.update(updates)
-				// 							.then(() => {
-				// 								notification.open({
-				// 									type: "success",
-				// 									message: "Success",
-				// 									description: "Updates have been saved.",
-				// 								});
-				// 							})
-				// 							.catch((err) => {
-				// 								notification.open({
-				// 									type: "error",
-				// 									message: err.toString(),
-				// 								});
-				// 							});
-
-				// 						this.close(row.pushKey);
-				// 					}}
-				// 				>
-				// 					<Form.Item
-				// 						label="Original URL"
-				// 						className="admin-forms-editRowItem"
-				// 						rules={[
-				// 							{
-				// 								required: true,
-				// 								message: "Please enter the form's original URL!",
-				// 							},
-				// 						]}
-				// 						name="full"
-				// 						initialValue={row.full}
-				// 					>
-				// 						<Input />
-				// 					</Form.Item>
-				// 					<Form.Item
-				// 						label="Custom URL"
-				// 						className="admin-forms-editRowItem admin-forms-editRowItem-customURL"
-				// 						rules={[
-				// 							{
-				// 								required: true,
-				// 								message: "Please enter the form's custom URL!",
-				// 							},
-				// 						]}
-				// 						name="short"
-				// 						initialValue={row.short}
-				// 					>
-				// 						<Input style={{ flexGrow: 1 }} />
-				// 					</Form.Item>
-				// 					<div
-				// 						style={{
-				// 							display: "flex",
-				// 							flexDirection: "row",
-				// 							alignItems: "flex-start",
-				// 						}}
-				// 					>
-				// 						<Form.Item
-				// 							label="Type"
-				// 							className="admin-forms-editRowItem admin-forms-editRowItem-type"
-				// 							rules={[
-				// 								{
-				// 									required: true,
-				// 									message: "Please select a form type!",
-				// 								},
-				// 							]}
-				// 							name="type"
-				// 							initialValue={row.type}
-				// 							style={{ flexGrow: 1, marginRight: "20px" }}
-				// 						>
-				// 							<Select>
-				// 								<Select.Option value="typeform">Typeform</Select.Option>
-				// 								<Select.Option value="googleforms">
-				// 									Google Forms
-				// 								</Select.Option>
-				// 								<Select.Option value="other">Other</Select.Option>
-				// 							</Select>
-				// 						</Form.Item>
-				// 						<Space>
-				// 							<Button type="primary" htmlType="submit">
-				// 								Save
-				// 							</Button>
-				// 							<Popconfirm
-				// 								title="Are you sure you want to delete this form?"
-				// 								onConfirm={() => {
-				// 									this.delete(row.pushKey);
-				// 									this.close(row.pushKey);
-				// 								}}
-				// 								okText="Delete"
-				// 								cancelText="No"
-				// 								placement="topLeft"
-				// 							>
-				// 								<Button danger>Delete</Button>
-				// 							</Popconfirm>
-				// 							<Button
-				// 								type="default"
-				// 								onClick={() => {
-				// 									this.close(row.pushKey);
-				// 								}}
-				// 							>
-				// 								Cancel
-				// 							</Button>
-				// 						</Space>
-				// 					</div>
-				// 				</Form>
-				// 			</div>
-				// 		);
-				// 		return { children: editElements, props: { colSpan: 4 } };
-				// 	}
-				// 	return (
-				// 		<a target="_blank" href={"/" + url}>
-				// 			{url}
-				// 		</a>
-				// 	);
-				// },
 				filterDropdown: ({
 					setSelectedKeys,
 					selectedKeys,
@@ -597,6 +472,12 @@ class AdminForms extends React.Component {
 												<Select.Option value="googleforms">
 													Google Forms
 												</Select.Option>
+												<Select.Option value="airtable">
+													Airtable Forms
+												</Select.Option>
+												<Select.Option value="surveymonkey">
+													Survey Monkey
+												</Select.Option>
 												<Select.Option value="other">Other</Select.Option>
 											</Select>
 										</Form.Item>
@@ -634,7 +515,7 @@ class AdminForms extends React.Component {
 					return (
 						<>
 							{this.state.searchedColumn === "short" ? (
-								<a target="_blank" href={url}>
+								<a target="_blank" href={url} rel="noopener noreferrer">
 									<Highlighter
 										highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
 										searchWords={[this.state.searchText]}
@@ -643,7 +524,7 @@ class AdminForms extends React.Component {
 									/>
 								</a>
 							) : (
-								<a target="_blank" href={url}>
+								<a target="_blank" href={url} rel="noopener noreferrer">
 									{url}
 								</a>
 							)}
@@ -728,7 +609,7 @@ class AdminForms extends React.Component {
 					return (
 						<>
 							{this.state.searchedColumn === "full" ? (
-								<a target="_blank" href={url}>
+								<a target="_blank" href={url} rel="noopener noreferrer">
 									<Highlighter
 										highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
 										searchWords={[this.state.searchText]}
@@ -737,7 +618,7 @@ class AdminForms extends React.Component {
 									/>
 								</a>
 							) : (
-								<a target="_blank" href={url}>
+								<a target="_blank" href={url} rel="noopener noreferrer">
 									{url}
 								</a>
 							)}
@@ -830,6 +711,18 @@ class AdminForms extends React.Component {
 								values.full.includes("forms.gle")
 							) {
 								updates.type = "googleforms";
+							} else if (values.full.includes("airtable.com/")) {
+								updates.type = "airtable";
+
+								var split = updates.full.split("/");
+								var domain = split.indexOf("airtable.com");
+								var embed = split[domain + 1] === "embed";
+								if (!embed) {
+									split.splice(domain + 1, 0, "embed");
+									updates.full = split.join("/");
+								}
+							} else if (values.full.includes("surveymonkey.com")) {
+								updates.type = "surveymonkey";
 							} else {
 								updates.type = "other";
 							}
@@ -910,6 +803,7 @@ class AdminForms extends React.Component {
 					loading={this.state.loading}
 					columns={formColumns}
 					dataSource={this.state.formData}
+					rowKey={(row) => row.short}
 				/>
 			</>
 		);

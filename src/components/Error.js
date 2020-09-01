@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Layout } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 function Error() {
 	return (
@@ -30,7 +30,12 @@ function Error() {
 							textAlign: "center",
 						}}
 					>
-						<img src="/logo.png" className="error-logo" draggable={false} />
+						<img
+							src="/logo.png"
+							className="error-logo"
+							draggable={false}
+							alt="Form Burrito Logo"
+						/>
 
 						<h1>Uh oh...</h1>
 						<h2>This form has gone missing!</h2>

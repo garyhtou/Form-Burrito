@@ -1,14 +1,8 @@
 import React from "react";
 import "./AdminSettings.css";
 import firebase from "../../firebase";
-import config from "../../config";
-import { Select, notification, Button, Popconfirm, Space, Form } from "antd";
-import {
-	FormOutlined,
-	UserOutlined,
-	SettingOutlined,
-	GithubOutlined,
-} from "@ant-design/icons";
+import { Select, notification, Popconfirm, Space, Form } from "antd";
+import { GithubOutlined } from "@ant-design/icons";
 import Avatar from "antd/lib/avatar/avatar";
 
 class AdminSettings extends React.Component {
@@ -177,9 +171,15 @@ class AdminSettings extends React.Component {
 								<strong>A cool person? </strong>yeah!
 							</p>
 							<Popconfirm
-								title="Are you sure you want to demote your account? You will no longer have access to anything!"
+								title={
+									<p>
+										Are you sure you want to demote your account?
+										<br />
+										You will no longer have access to anything!
+									</p>
+								}
 								okText={
-									"Yes, demote " +
+									"Yes, remove admin privileges from " +
 									firebase.auth().currentUser.displayName +
 									"'s account"
 								}
@@ -209,7 +209,9 @@ class AdminSettings extends React.Component {
 									});
 								}}
 							>
-								<a style={{ color: "red" }}>Delete Account</a>
+								<a style={{ color: "red" }} href="#">
+									Delete Account
+								</a>
 							</Popconfirm>
 						</div>
 					</div>
@@ -276,6 +278,28 @@ class AdminSettings extends React.Component {
 							</Select.Option>
 						</Select>
 					</Form.Item>
+				</div>
+				<div className="admin-settings-section">
+					<h1 className="admin-settings-sectionTitle">About</h1>
+					<p>
+						Form Burrito is created by{" "}
+						<a href="https://garytou.com">
+							<strong>Gary Tou</strong>
+						</a>
+						! Check out this project on{" "}
+						<a href="https://github.com/garytou2/Form-Burrito">
+							GitHub <GithubOutlined />
+						</a>
+					</p>
+					<img
+						src="./logo.png"
+						alt="Form Burrito Logo"
+						style={{ width: "50%", marginTop: "20px" }}
+					/>
+					<p>
+						A portion of Form Burrito's logo contains an asset designed by{" "}
+						<a href="https://www.freepik.com/">Freepik</a>
+					</p>
 				</div>
 			</>
 		);

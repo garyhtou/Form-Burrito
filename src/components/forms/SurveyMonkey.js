@@ -1,10 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import "./Typeform.css";
 import Error from "./../Error";
 import Loading from "./../Loading";
 
-class Typeform extends React.Component {
+class SurveyMonkey extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { loading: true, error: false, formTitle: "" };
@@ -31,7 +30,9 @@ class Typeform extends React.Component {
 							responseText,
 							"text/html"
 						);
-						if (parsedResponse.title.includes("Incorrect URL")) {
+						if (
+							parsedResponse.title.includes("SurveyMonkey Survey Not Found")
+						) {
 							this.setState({ loading: false, error: true });
 						} else {
 							this.setState({
@@ -70,18 +71,13 @@ class Typeform extends React.Component {
 								)}
 
 								<iframe
-									id="typeform-full"
+									class="survey-monkey"
+									src={this.props.src}
+									frameBorder="0"
 									width="100%"
 									height="100%"
-									frameBorder="0"
-									allow="camera; microphone; autoplay; encrypted-media;"
-									src={this.props.src}
 									title={this.state.formTitle}
 								></iframe>
-								<script
-									type="text/javascript"
-									src="https://embed.typeform.com/embed.js"
-								></script>
 							</>
 						)}
 					</>
@@ -91,4 +87,4 @@ class Typeform extends React.Component {
 	}
 }
 
-export default Typeform;
+export default SurveyMonkey;
