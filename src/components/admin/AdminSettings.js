@@ -62,7 +62,7 @@ class AdminSettings extends React.Component {
 
 												for (let uid in snapshot.val()) {
 													for (let user of this.state.users) {
-														if (user.uid == uid) {
+														if (user.uid === uid) {
 															if (snapshot.val()[uid]) {
 																admins.push({
 																	uid: uid,

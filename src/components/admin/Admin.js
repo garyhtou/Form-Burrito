@@ -6,16 +6,14 @@ import * as firebaseui from "firebaseui";
 import { Helmet } from "react-helmet";
 import config from "../../config";
 import { Layout, Menu, Spin, notification } from "antd";
-import {
+import Icon, {
 	FormOutlined,
-	UserOutlined,
 	SettingOutlined,
 	GithubOutlined,
 	LogoutOutlined,
 } from "@ant-design/icons";
 import AdminForms from "./AdminForms";
 import AdminSettings from "./AdminSettings";
-import { FirebaseAuth } from "react-firebaseui";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -89,6 +87,9 @@ class Admin extends React.Component {
 			.signOut()
 			.then(() => {
 				notification.open({
+					icon: (
+						<Icon component={() => <img src="/icon512.png" width="30px" />} />
+					),
 					message: "Goodbye, " + name,
 					description: this.authMessages.logout[
 						Math.floor(Math.random() * this.authMessages.logout.length + 1) - 1
@@ -219,12 +220,9 @@ class Admin extends React.Component {
 													</Menu.Item>
 												</Menu>
 											</Sider>
-											<Layout className="site-layout">
+											<Layout>
 												<Content style={{ margin: "0 16px" }}>
-													<div
-														className="site-layout-background"
-														style={{ padding: 24, minHeight: 360 }}
-													>
+													<div style={{ padding: 24, minHeight: 360 }}>
 														{this.state.page === "settings" ? (
 															// ============= SETTINGS =============
 															<>

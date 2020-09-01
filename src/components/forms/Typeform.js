@@ -20,6 +20,9 @@ class Typeform extends React.Component {
 		if (!this.state.error) {
 			fetch(corsAnywhere + formURL)
 				.then(function (response) {
+					if (response.status === 404) {
+						throw new Error("404");
+					}
 					return response.text();
 				})
 				.then(

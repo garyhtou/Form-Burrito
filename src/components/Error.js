@@ -10,7 +10,7 @@ function Error() {
 	return (
 		<>
 			<Helmet>
-				<title>Forms Burriot - 404</title>
+				<title>Forms Burrito - 404</title>
 			</Helmet>
 			<Layout style={{ minHeight: "100vh" }}>
 				<Content
@@ -25,7 +25,8 @@ function Error() {
 						style={{
 							position: "absolute",
 							top: "50%",
-							transform: "translateY(-50%)",
+							left: "50%",
+							transform: "translate(-50%, -50%)",
 							textAlign: "center",
 						}}
 					>

@@ -20,6 +20,9 @@ class GoogleForms extends React.Component {
 		if (!this.state.error) {
 			fetch(corsAnywhere + formURL)
 				.then(function (response) {
+					if (response.status === 404) {
+						throw new Error("404");
+					}
 					return response.text();
 				})
 				.then(
@@ -71,9 +74,9 @@ class GoogleForms extends React.Component {
 									src={this.props.src}
 									width="100%"
 									height="100%"
-									frameborder="0"
-									marginheight="0"
-									marginwidth="0"
+									frameBorder="0"
+									marginHeight="0"
+									marginWidth="0"
 									title={this.state.formTitle}
 								>
 									Loading…
