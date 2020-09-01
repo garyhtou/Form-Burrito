@@ -8,7 +8,9 @@ import config from "./config";
 
 // Initialize Firebase
 firebase.initializeApp(config.firebaseConfig);
-firebase.analytics();
+if (typeof config.firebaseConfig.measurementId !== "undefined") {
+	firebase.analytics();
+}
 firebase.auth();
 firebase.database();
 

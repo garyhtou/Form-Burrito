@@ -168,25 +168,20 @@ class AdminSettings extends React.Component {
 								<strong>Admin? </strong>yup
 							</p>
 							<p style={{}}>
-								<strong>A cool person? </strong>yeah!
+								<strong>Loves burritos🌯? </strong>yeah, i think so
 							</p>
 							<Popconfirm
 								title={
 									<p>
-										Are you sure you want to demote your account?
+										Are you sure you want to delete{" "}
+										{firebase.auth().currentUser.displayName}'s account?
 										<br />
 										You will no longer have access to anything!
 									</p>
 								}
-								okText={
-									"Yes, remove admin privileges from " +
-									firebase.auth().currentUser.displayName +
-									"'s account"
-								}
+								okText={"Yes, delete from my account"}
 								cancelText="Cancel"
 								onConfirm={() => {
-									console.log("deleting account");
-
 									Promise.all([
 										firebase
 											.database()
@@ -203,7 +198,7 @@ class AdminSettings extends React.Component {
 											.then(function () {
 												notification.open({
 													type: "success",
-													message: "Your account has been demoted",
+													message: "Your account has been deleted",
 												});
 											});
 									});
@@ -281,25 +276,46 @@ class AdminSettings extends React.Component {
 				</div>
 				<div className="admin-settings-section">
 					<h1 className="admin-settings-sectionTitle">About</h1>
-					<p>
-						Form Burrito is created by{" "}
-						<a href="https://garytou.com">
-							<strong>Gary Tou</strong>
-						</a>
-						! Check out this project on{" "}
-						<a href="https://github.com/garytou2/Form-Burrito">
-							GitHub <GithubOutlined />
-						</a>
-					</p>
-					<img
-						src="./logo.png"
-						alt="Form Burrito Logo"
-						style={{ width: "50%", marginTop: "20px" }}
-					/>
-					<p>
-						A portion of Form Burrito's logo contains an asset designed by{" "}
-						<a href="https://www.freepik.com/">Freepik</a>
-					</p>
+					<div
+						className="admin-settings-aboutFlex"
+						style={{
+							display: "flex",
+							flexDirection: "row",
+						}}
+					>
+						<div className="admin-settings-aboutLeft">
+							<p>
+								Form Burrito hides the ugly URLs created by Google Forms,
+								Typeform, and other form providers by ✨wrapping✨ it in your
+								own beautiful, custom burrito🌯 (ahem... i meant domain). Need a
+								more technical explination? It seamlessly iframes your forms on
+								your domain and gives you can easy way for you (and your team)
+								to manage them!
+							</p>
+							<p>
+								Form Burrito is created by{" "}
+								<a href="https://garytou.com">
+									<strong>Gary Tou</strong>
+								</a>
+								! Check out this project on{" "}
+								<a href="https://github.com/garytou2/Form-Burrito">
+									GitHub <GithubOutlined />
+								</a>
+							</p>
+						</div>
+						<div style={{ textAlign: "center" }}>
+							<img
+								src="./logo.png"
+								alt="Form Burrito Logo"
+								style={{ width: "100%", marginBottom: "15px" }}
+								draggable={false}
+							/>
+							<p style={{ fontSize: ".8em", fontStyle: "italic" }}>
+								A portion of Form Burrito's logo contains an asset designed by{" "}
+								<a href="https://www.freepik.com/">Freepik</a>
+							</p>
+						</div>
+					</div>
 				</div>
 			</>
 		);

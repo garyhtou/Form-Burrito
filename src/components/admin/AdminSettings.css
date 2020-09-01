@@ -4,3 +4,17 @@
 .admin-settings-sectionTitle {
 	font-size: 2em;
 }
+.admin-settings-aboutLeft {
+	margin-right: 60px;
+	margin-bottom: 10px;
+}
+
+@media (max-width: 800px) {
+	.admin-settings-aboutFlex {
+		flex-wrap: wrap;
+	}
+	.admin-settings-aboutLeft {
+		margin-right: 0;
+		margin-bottom: 40px;
+	}
+}

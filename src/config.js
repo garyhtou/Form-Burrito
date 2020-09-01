@@ -1,10 +1,12 @@
-// Create a firebase project. Add a web app to that rebase project and copy the config here
-var firebaseConfig = {};
+// Create a firebase project. Add a web app to that project and copy the Config here
+const firebaseConfig = {};
 
-var config = {
+const config = {
 	firebaseConfig: firebaseConfig,
-	homeRedirect: "https://github.com/garytou2/Form-Burrito",
-	entityName: "Form Burrito", //The name of the business, organization, or your own name!
+	homeRedirect: "https://github.com/garytou2/Form-Burrito", //redirects to this URL if you visit the home page
+	entityName: "Form Burrito", //The name of your business, organization, or your own name!
 };
+
+//Also, feel free to change /public/favicon.png to your own logo
 
 export default config;

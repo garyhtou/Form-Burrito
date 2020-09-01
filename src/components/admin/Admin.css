@@ -52,6 +52,7 @@
 
 .admin-login-logo {
 	width: 25em;
+	max-width: 100%;
 }
 
 code {
@@ -60,4 +61,77 @@ code {
 	background-color: #f0f0f0;
 	padding: 2px 4px;
 	border-radius: 2px;
+	word-break: break-all;
+}
+
+@media (max-width: 650px) {
+	.floatBurritoWrapper {
+		display: none !important;
+	}
+}
+
+.floatBurritoWrapper {
+	position: absolute;
+	left: 2vw;
+	bottom: -1vw;
+}
+
+.floatBurritoWrapper img {
+	width: max(10vw, 45px);
+	cursor: pointer;
+	animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		/* box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6); */
+		-webkit-filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.6));
+		filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.6));
+		transform: translatey(0px);
+	}
+	50% {
+		/* box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2); */
+		-webkit-filter: drop-shadow(0 25px 15px rgba(0, 0, 0, 0.1));
+		filter: drop-shadow(0 25px 15px rgba(0, 0, 0, 0.2));
+		transform: translatey(-10px);
+	}
+	100% {
+		/* box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6); */
+		-webkit-filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.6));
+		filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.6));
+		transform: translatey(0px);
+	}
+}
+
+.speech-bubble {
+	position: absolute;
+	top: min(-2vw, -20px);
+	right: 4vw;
+	transform: translate(100%, -100%);
+	padding: 30px 40px;
+	min-width: max(13vw, 300px);
+	text-align: center;
+	background-color: #fff;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	border-radius: 25px;
+	font-size: 1em;
+	font-weight: 400;
+	font-family: "Fredoka One", -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.speech-bubble:after {
+	content: " ";
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 3vw;
+	bottom: -3.5vw;
+	border: 2vw solid;
+	border-color: #fff transparent transparent #fff;
+}
+
+.speech-bubble p {
+	margin: 0;
 }

@@ -43,12 +43,11 @@ function Error() {
 				</Content>
 
 				<Footer style={{ textAlign: "center" }}>
-					Form Burrito{" "}
 					<a
 						className="gh-link"
 						href="https://github.com/garytou2/Forms-Custom-Domain"
 					>
-						<GithubOutlined />
+						Form Burrito <GithubOutlined />
 					</a>
 					<span className="credit-sep">|</span>
 					Developed by <a href="https://garytou.com">Gary Tou</a>

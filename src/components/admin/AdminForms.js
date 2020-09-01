@@ -11,6 +11,7 @@ import {
 	Button,
 	notification,
 	Popconfirm,
+	Empty,
 } from "antd";
 import {
 	EditOutlined,
@@ -149,6 +150,8 @@ class AdminForms extends React.Component {
 						formData.reverse();
 
 						this.setState({ formData, loading: false });
+					} else {
+						this.setState({ loading: false });
 					}
 				}.bind(this)
 			);
@@ -264,61 +267,95 @@ class AdminForms extends React.Component {
 		});
 	}
 
-	submit(updates) {
-		for (let entry of this.state.formData) {
-			if (entry.short === updates.short) {
+	validateAll(values, existingPushKey) {
+		return new Promise((resolve, reject) => {
+			if (values.short === "admin") {
 				notification.open({
 					type: "error",
-					message: "Choose another Custom URL",
+					message: "Silly you!",
 					description: (
 						<>
 							<p>
-								<code>{updates.short}</code> is already being used by{" "}
-								<code>{entry.full}</code>
+								You can't use <code>{values.short}</code> as your custom URL.
 							</p>
 						</>
 					),
 				});
-				return;
+				return reject("You can't use admin as your custom URL");
 			}
-			if (entry.full === updates.full && !this.state.settings.manyToOne) {
-				notification.open({
-					type: "error",
-					message: (
-						<p>
-							This form already has a Custom URL: <code>{updates.full}</code>
-						</p>
-					),
-					description: (
-						<p>
-							To allow for multiple custom urls per form, change the{" "}
-							<code>Many to One</code> setting.
-						</p>
-					),
-				});
-				return;
+
+			for (let entry of this.state.formData) {
+				if (entry.pushKey !== existingPushKey) {
+					if (entry.short === values.short) {
+						notification.open({
+							type: "error",
+							message: "Choose another Custom URL",
+							description: (
+								<>
+									<p>
+										<code>{values.short}</code> is already being used by{" "}
+										<code>{entry.full}</code>
+									</p>
+								</>
+							),
+						});
+						return reject(
+							values.short + " is already being used by " + entry.full
+						);
+					}
+					if (entry.full === values.full && !this.state.settings.manyToOne) {
+						notification.open({
+							type: "error",
+							message: (
+								<p>
+									This form already has a Custom URL:{" "}
+									<code>{values.short}</code>
+								</p>
+							),
+							description: (
+								<p>
+									To allow for multiple custom urls per form, change the{" "}
+									<code>Many to One</code> setting.
+								</p>
+							),
+						});
+						return reject(
+							"This form already has a Custom URL: " + values.short
+						);
+					}
+				}
 			}
-		}
 
-		firebase
-			.database()
-			.ref("urls/")
-			.push(updates)
-			.then(() => {
-				notification.open({
-					type: "success",
-					message: "Success",
-					description: "New form has been added.",
-				});
+			return resolve(values);
+		});
+	}
 
-				this.addFormRef.current.resetFields();
-			})
-			.catch((err) => {
-				notification.open({
-					type: "error",
-					message: err.toString(),
+	submit(values) {
+		this.validateAll(values).then(() => {
+			firebase
+				.database()
+				.ref("urls/")
+				.push(values)
+				.then(() => {
+					notification.open({
+						type: "success",
+						message: "Success",
+						description: (
+							<p>
+								<code>{values.short}</code> has been added.
+							</p>
+						),
+					});
+
+					this.addFormRef.current.resetFields();
+				})
+				.catch((err) => {
+					notification.open({
+						type: "error",
+						message: err.toString(),
+					});
 				});
-			});
+		});
 	}
 
 	render() {
@@ -397,26 +434,29 @@ class AdminForms extends React.Component {
 										updates.full = values.full.trim();
 										updates.short = values.short.trim();
 										updates.type = values.type.trim();
+										updates.time = row.time;
 
-										firebase
-											.database()
-											.ref("urls/" + row.pushKey)
-											.update(updates)
-											.then(() => {
-												notification.open({
-													type: "success",
-													message: "Success",
-													description: "Updates have been saved.",
-												});
-											})
-											.catch((err) => {
-												notification.open({
-													type: "error",
-													message: err.toString(),
-												});
-											});
+										this.validateAll(updates, row.pushKey).then(() => {
+											this.close(row.pushKey);
 
-										this.close(row.pushKey);
+											firebase
+												.database()
+												.ref("urls/" + row.pushKey)
+												.update(updates)
+												.then(() => {
+													notification.open({
+														type: "success",
+														message: "Success",
+														description: "Updates have been saved.",
+													});
+												})
+												.catch((err) => {
+													notification.open({
+														type: "error",
+														message: err.toString(),
+													});
+												});
+										});
 									}}
 								>
 									<Form.Item
@@ -515,7 +555,12 @@ class AdminForms extends React.Component {
 					return (
 						<>
 							{this.state.searchedColumn === "short" ? (
-								<a target="_blank" href={url} rel="noopener noreferrer">
+								<a
+									target="_blank"
+									href={url}
+									rel="noopener noreferrer"
+									style={{ wordBreak: "break-all" }}
+								>
 									<Highlighter
 										highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
 										searchWords={[this.state.searchText]}
@@ -524,7 +569,12 @@ class AdminForms extends React.Component {
 									/>
 								</a>
 							) : (
-								<a target="_blank" href={url} rel="noopener noreferrer">
+								<a
+									target="_blank"
+									href={url}
+									rel="noopener noreferrer"
+									style={{ wordBreak: "break-all" }}
+								>
 									{url}
 								</a>
 							)}
@@ -609,7 +659,12 @@ class AdminForms extends React.Component {
 					return (
 						<>
 							{this.state.searchedColumn === "full" ? (
-								<a target="_blank" href={url} rel="noopener noreferrer">
+								<a
+									target="_blank"
+									href={url}
+									rel="noopener noreferrer"
+									style={{ wordBreak: "break-all" }}
+								>
 									<Highlighter
 										highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
 										searchWords={[this.state.searchText]}
@@ -618,7 +673,12 @@ class AdminForms extends React.Component {
 									/>
 								</a>
 							) : (
-								<a target="_blank" href={url} rel="noopener noreferrer">
+								<a
+									target="_blank"
+									href={url}
+									rel="noopener noreferrer"
+									style={{ wordBreak: "break-all" }}
+								>
 									{url}
 								</a>
 							)}
@@ -665,26 +725,29 @@ class AdminForms extends React.Component {
 					}
 					return (
 						<Space size="middle">
-							<a
-								onClick={() => {
-									this.edit(row.pushKey);
-								}}
-								style={{ color: "inherit" }}
-							>
-								<EditOutlined className="admin-forms-actionIcons" />
-							</a>
+							<Tooltip title="Edit">
+								<a
+									onClick={() => {
+										this.edit(row.pushKey);
+									}}
+									style={{ color: "inherit" }}
+								>
+									<EditOutlined className="admin-forms-actionIcons" />
+								</a>
+							</Tooltip>
 
 							<Popconfirm
 								title="Are you sure you want to delete this form?"
 								onConfirm={() => {
 									this.delete(row.pushKey);
-									this.close(row.pushKey);
 								}}
 								okText="Delete"
 								cancelText="No"
 								placement="topLeft"
 							>
-								<DeleteOutlined className="admin-forms-actionIcons" />
+								<Tooltip title="Delete">
+									<DeleteOutlined className="admin-forms-actionIcons" />
+								</Tooltip>
 							</Popconfirm>
 						</Space>
 					);
@@ -803,7 +866,15 @@ class AdminForms extends React.Component {
 					loading={this.state.loading}
 					columns={formColumns}
 					dataSource={this.state.formData}
-					rowKey={(row) => row.short}
+					rowKey={(row) => row.short + row.edit}
+					locale={{
+						emptyText: (
+							<Empty
+								image="/icon512.png"
+								description={<h3 style={{ color: "inherit" }}>No Forms</h3>}
+							></Empty>
+						),
+					}}
 				/>
 			</>
 		);

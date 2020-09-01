@@ -31,7 +31,8 @@ A React app that embeds your forms on your domain and uses Firebase for auth and
 			".read": "auth != null && root.child('admins/' + auth.uid).exists() && root.child('admins/' + auth.uid).val() === true",
 			".write": false,
 			"$uid": {
-				".write": "auth != null && $uid === auth.uid"
+				".write": "auth != null && $uid === auth.uid",
+				".read": "auth != null && $uid === auth.uid"
 			}
 		},
 
