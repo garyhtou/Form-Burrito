@@ -1,6 +1,6 @@
 # Form Burrito (WIP)
 
-Seamless custom domains/urls for your Typeforms and Google Forms.
+Seamless custom domains/urls for your Google Forms, Typeforms, and others!.
 
 A React app that embeds your forms on your domain and uses Firebase for auth and database.
 

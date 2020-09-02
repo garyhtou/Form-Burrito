@@ -129,6 +129,13 @@ class Admin extends React.Component {
 					message: "Goodbye, " + name,
 					description: this.randomMessage(false),
 				});
+				this.setState({
+					collapsed: false,
+					page: "forms",
+					loggedIn: false,
+					admin: false,
+					newAdminModal: false,
+				});
 			});
 	}
 
