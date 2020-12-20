@@ -298,7 +298,7 @@ class AdminSettings extends React.Component {
 									<strong>Gary Tou</strong>
 								</a>
 								! Check out this project on{" "}
-								<a href="https://github.com/garytou2/Form-Burrito">
+								<a href="https://github.com/garyhtou/Form-Burrito">
 									GitHub <GithubOutlined />
 								</a>
 							</p>

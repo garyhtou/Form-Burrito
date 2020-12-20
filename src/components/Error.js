@@ -45,7 +45,7 @@ function Error() {
 				<Footer style={{ textAlign: "center" }}>
 					<a
 						className="gh-link"
-						href="https://github.com/garytou2/Forms-Custom-Domain"
+						href="https://github.com/garyhtou/Form-Burrito"
 					>
 						Form Burrito <GithubOutlined />
 					</a>

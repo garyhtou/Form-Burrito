@@ -400,7 +400,7 @@ class Admin extends React.Component {
 												<Footer style={{ textAlign: "center" }}>
 													<a
 														className="gh-link"
-														href="https://github.com/garytou2/Forms-Custom-Domain"
+														href="https://github.com/garyhtou/Form-Burrito"
 													>
 														Form Burrito <GithubOutlined />
 													</a>
@@ -435,7 +435,7 @@ class Admin extends React.Component {
 												<p>
 													If you have any questions, please refer to the Read Me{" "}
 													on{" "}
-													<a href="https://github.com/garytou2/Form-Burrito">
+													<a href="https://github.com/garyhtou/Form-Burrito">
 														GitHub <GithubOutlined />
 													</a>
 												</p>
@@ -479,7 +479,7 @@ class Admin extends React.Component {
 												}}
 											>
 												<div className="admin-login-container">
-													<a href="https://github.com/garytou2/Form-Burrito">
+													<a href="https://github.com/garyhtou/Form-Burrito">
 														<img
 															src="/logo.png"
 															className="admin-login-logo"
@@ -502,7 +502,7 @@ class Admin extends React.Component {
 											<Footer style={{ textAlign: "center" }}>
 												<a
 													className="gh-link"
-													href="https://github.com/garytou2/Forms-Custom-Domain"
+													href="https://github.com/garyhtou/Forms-Burrito"
 												>
 													Form Burrito <GithubOutlined />
 												</a>
@@ -535,7 +535,7 @@ class Admin extends React.Component {
 										}}
 									>
 										<div className="admin-login-container">
-											<a href="https://github.com/garytou2/Form-Burrito">
+											<a href="https://github.com/garyhtou/Form-Burrito">
 												<img
 													src="/logo.png"
 													className="admin-login-logo"
@@ -572,7 +572,7 @@ class Admin extends React.Component {
 									<Footer style={{ textAlign: "center" }}>
 										<a
 											className="gh-link"
-											href="https://github.com/garytou2/Forms-Custom-Domain"
+											href="https://github.com/garyhtou/Forms-Custom-Domain"
 										>
 											Form Burrito <GithubOutlined />
 										</a>

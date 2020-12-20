@@ -1,8 +1,8 @@
 {
 	"name": "form-burrito",
 	"version": "0.1.0",
-	"author": "Gary Tou <garytou2@gmail.com> (https://github.com/garytou2)",
-	"homepage": "https://github.com/garytou2/Form-Burrito#readme",
+	"author": "Gary Tou <gary@garytou.com> (https://github.com/garyhtou)",
+	"homepage": "https://github.com/garyhtou/Form-Burrito#readme",
 	"license": "MIT",
 	"private": true,
 	"dependencies": {
@@ -40,7 +40,7 @@
 		]
 	},
 	"bugs": {
-		"url": "https://github.com/garytou2/Form-Burrito/issues",
-		"email": "garytou2@gmail.com"
+		"url": "https://github.com/garyhtou/Form-Burrito/issues",
+		"email": "gary@garytou.com"
 	}
 }

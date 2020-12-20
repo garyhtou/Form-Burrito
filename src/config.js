@@ -3,7 +3,7 @@ const firebaseConfig = {};
 
 const config = {
 	firebaseConfig: firebaseConfig,
-	homeRedirect: "https://github.com/garytou2/Form-Burrito", //redirects to this URL if you visit the home page
+	homeRedirect: "https://github.com/garyhtou/Form-Burrito", //redirects to this URL if you visit the home page
 	entityName: "Form Burrito", //The name of your business, organization, or your own name!
 };
 
